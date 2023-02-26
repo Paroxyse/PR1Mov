@@ -18,8 +18,8 @@ class HomePage extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text('Daniel Alejandro Montoya Soto', style: TextStyle(color: Colors.black),),
-                content: Text('Estudiante de ISC, grupo 8AY 19041228\n'
+                title: Text('Transformación Digital de las Organizaciones', style: TextStyle(color: Colors.black),),
+                content: Text('Daniel Alejandro Montoya Soto, ISC\n Desarrollo de Soluciones móviles grupo 8AY 19041228\n'
                     'Docente: Norma Alicia García Vidaña'),
                 actions: [
                   ElevatedButton(
