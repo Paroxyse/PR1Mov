@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
           Navigator.push(context,MaterialPageRoute(builder: (context) => Cards()),);
         },
         tooltip: "Siguiente",
-        child: Icon(Icons.abc),
+        child: Icon(Icons.arrow_forward),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pr1/pages/HomePage.dart';
+import 'package:pr1/pages/card.dart';
 
 class latbar extends StatelessWidget
 {
@@ -37,7 +38,17 @@ class latbar extends StatelessWidget
                   {
                     return HomePage();
                   }));
-            })
+            }),
+          new ListTile(
+              title: Text("Fotos", style: TextStyle(color: Colors.black),),
+              leading: Icon(Icons.home,color: Colors.black,),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)
+                    {
+                      return Cards();
+                    }));
+              })
         ],
       )
     );
