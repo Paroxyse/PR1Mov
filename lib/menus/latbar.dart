@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pr1/pages/HomePage.dart';
 import 'package:pr1/pages/card.dart';
-
+import 'package:pr1/pages/mapPage.dart';
 class latbar extends StatelessWidget
 {
   @override
@@ -48,6 +48,16 @@ class latbar extends StatelessWidget
                     MaterialPageRoute(builder: (context)
                     {
                       return Cards();
+                    }));
+              }),
+          ListTile(
+              title: const Text("Mapa", style: TextStyle(color: Colors.black),),
+              leading: const Icon(Icons.map,color: Colors.black,),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)
+                    {
+                      return mapPage();
                     }));
               })
         ],
