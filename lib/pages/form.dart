@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pr1/classes/data.dart';
 import 'package:pr1/pages/card.dart';
+import 'package:flutter/services.dart';
+
 class form extends StatefulWidget
 {
   @override
@@ -13,6 +15,7 @@ class myForm extends State<form>
 {
   final _Text1Controller = TextEditingController();
   final _Text2Controller = TextEditingController();
+  final _NumController = TextEditingController();
   List<data> _data=[];
   @override
   Widget build(BuildContext context)
@@ -31,7 +34,8 @@ class myForm extends State<form>
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Nombre común"
+                  labelText: "Nombre común",
+                    icon: Icon(Icons.nature)
                 ),
               ),
               Padding(padding: EdgeInsets.all(20.00),),
@@ -40,12 +44,30 @@ class myForm extends State<form>
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: "Nombre ciencioso"
+                labelText: "Nombre científico",
+                  icon: Icon(Icons.science)
             )
             ),
               Padding(padding: EdgeInsets.all(20.00),),
+              TextField(
+                  controller: _NumController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  decoration: InputDecoration(
+                      labelText: "Identificador",
+                      hintText: "Ingresa un ID, solo se permiten numeros",
+                      icon: Icon(Icons.numbers)
+                  )
+              ),
+              Padding(padding: EdgeInsets.all(20.00),),
               ElevatedButton(onPressed: (){
-                if(validarNombre(_Text1Controller.text) && validarNombre(_Text2Controller.text))
+                bool b1=validarNombre(_Text1Controller.text);
+                bool b2=validarNombreCien(_Text2Controller.text);
+                bool b3=validarNum(_NumController.text);
+                if(b1 && b2 && b3)
                 {
                   _data.add(new data(_Text1Controller.text, _Text2Controller.text));
                   Navigator.push(
@@ -58,11 +80,24 @@ class myForm extends State<form>
                   );
                 }else
                 {
+                  String errorMessage="";
+                  if(!b1)
+                  {
+                    errorMessage+="-El campo de nombre común es obligatorio y solamente permite letras del alfabeto latino (Diacríticos de español) y espacios\n";
+                  }
+                  if(!b2)
+                  {
+                    errorMessage+="-El campo de nombre científico es obligatorio y solamente permite letras del alfabeto latino (Diacríticos de español) y espacios\n";
+                  }
+                  if(!b3)
+                  {
+                    errorMessage+="-El campo de Identificador es obligatorio y solamente permite números enteros\n";
+                  }
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: const Text('Ponga solamente letras mi loco', style: TextStyle(color: Colors.black),),
-                      content: Text(_Text1Controller.text+"\n"+_Text2Controller.text),
+                      title: Text("Datos erroneos ingresados", style: TextStyle(color: Colors.red, fontSize: 20),),
+                      content: Text(errorMessage),
                       actions: <Widget>[
                         ElevatedButton(
                             onPressed: () {
@@ -86,6 +121,18 @@ class myForm extends State<form>
 }
 bool validarNombre(String cadena)
 {
-  RegExp exp =  RegExp(r'^[a-zA-Z]+[a-zA-Z]*$');
+  RegExp exp =  RegExp(r'^[a-zA-ZÁÉÍÓÚÜ]+[a-zA-ZáéíóúüÁÉÍÓÚÜ ]*$');
   return exp.hasMatch(cadena);
 }
+bool validarNombreCien(String cadena)
+{
+  RegExp exp =  RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ]+[a-zA-ZáéíóúüÁÉÍÓÚÜ ]*$');
+  return exp.hasMatch(cadena);
+}
+bool validarNum(String cadena)
+{
+  //Esto es código muerto 8)
+  RegExp exp =  RegExp(r'[0-9]');
+  return exp.hasMatch(cadena);
+}
+
