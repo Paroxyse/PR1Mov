@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pr1/pages/HomePage.dart';
 import 'package:pr1/pages/card.dart';
 import 'package:pr1/pages/mapPage.dart';
+import 'package:pr1/pages/form.dart';
 class latbar extends StatelessWidget
 {
   @override
@@ -58,6 +59,16 @@ class latbar extends StatelessWidget
                     MaterialPageRoute(builder: (context)
                     {
                       return mapPage();
+                    }));
+              }),
+          ListTile(
+              title: const Text("Registro de poios", style: TextStyle(color: Colors.black),),
+              leading: const Icon(Icons.app_registration,color: Colors.black,),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)
+                    {
+                      return form();
                     }));
               })
         ],

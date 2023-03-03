@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.amber,
-        title: Text("ui'"),
+        title: const Text("ui'"),
         centerTitle: true,
         elevation: 25.5,
         actions: [
@@ -18,19 +18,19 @@ class HomePage extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text('Transformación Digital de las Organizaciones', style: TextStyle(color: Colors.black),),
-                content: Text('Daniel Alejandro Montoya Soto, ISC\n Desarrollo de Soluciones móviles grupo 8AY 19041228\n'
+                title: const Text('Transformación Digital de las Organizaciones', style: TextStyle(color: Colors.black),),
+                content: const Text('Daniel Alejandro Montoya Soto, ISC\nDesarrollo de Soluciones móviles grupo 8AY 19041228\n'
                     'Docente: Norma Alicia García Vidaña'),
                 actions: [
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text('Regresar'))
+                      child: const Text('Regresar'))
                 ],
               ),
             );
-          }, icon: Icon(Icons.info, color: Colors.white),
+          }, icon: const Icon(Icons.info, color: Colors.white),
             tooltip: "Información",
 
           )
