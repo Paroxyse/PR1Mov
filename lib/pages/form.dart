@@ -87,11 +87,11 @@ class myForm extends State<form>
                   }
                   if(!b2)
                   {
-                    errorMessage+="-El campo de nombre científico es obligatorio y solamente permite letras del alfabeto latino (Diacríticos de español) y espacios\n";
+                    errorMessage+="-El campo de nombre científico es obligatorio, solamente permite letras del alfabeto latino, empieza y termina con paréntesis (Diacríticos de español) y espacios\n";
                   }
                   if(!b3)
                   {
-                    errorMessage+="-El campo de Identificador es obligatorio y solamente permite números enteros\n";
+                    errorMessage+="-El campo de Identificador es obligatorio, de mínimo 3 caracteres y solamente permite números enteros\n";
                   }
                   showDialog(
                     context: context,
@@ -126,11 +126,14 @@ bool validarNombre(String cadena)
 }
 bool validarNombreCien(String cadena)
 {
-  RegExp exp =  RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ]+[a-zA-ZáéíóúüÁÉÍÓÚÜ ]*$');
+  RegExp exp =  RegExp(r'^[(][a-zA-ZáéíóúüÁÉÍÓÚÜ]+[a-zA-ZáéíóúüÁÉÍÓÚÜ ]*[)]$');
   return exp.hasMatch(cadena);
 }
 bool validarNum(String cadena)
 {
+  if(cadena.length<3){
+    return false;
+  }
   //Esto es código muerto 8)
   RegExp exp =  RegExp(r'[0-9]');
   return exp.hasMatch(cadena);
