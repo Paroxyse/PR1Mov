@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pr1/classes/data.dart';
 import 'package:pr1/pages/card.dart';
 import 'package:flutter/services.dart';
-
+import 'package:pr1/pages/listaDatos.dart';
 class form extends StatefulWidget
 {
   @override
@@ -69,12 +69,12 @@ class myForm extends State<form>
                 bool b3=validarNum(_NumController.text);
                 if(b1 && b2 && b3)
                 {
-                  _data.add(new data(_Text1Controller.text, _Text2Controller.text));
+                  _data.add( data(_NumController.text,_Text1Controller.text, _Text2Controller.text));
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context)
                       {
-                        return CustomCard2("assets/Pablo.jpg", _Text1Controller.text, _Text2Controller.text);
+                        return ListaDatos(_data);
                       }
                       )
                   );
