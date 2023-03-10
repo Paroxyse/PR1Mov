@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pr1/classes/data.dart';
-import 'package:pr1/pages/card.dart';
+import 'package:pr1/pages/cardPage2.dart';
 import 'package:flutter/services.dart';
 import 'package:pr1/pages/listaDatos.dart';
 class form extends StatefulWidget
@@ -114,6 +114,21 @@ class myForm extends State<form>
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()
+        {
+          _data.add( data(_NumController.text.toString(),_Text1Controller.text.toString(), _Text2Controller.text.toString()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context)
+              {
+                return CardPage2(_data);
+              }
+              )
+          );
+        },
+        child: Icon(Icons.arrow_forward),
       ),
     );
   }
